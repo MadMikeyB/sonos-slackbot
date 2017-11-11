@@ -28,10 +28,11 @@ class SonosInfoCommand extends Command
                 if ($track->artist) {
                     $output->writeln("<info>Artist:</info> {$track->artist}");
                     $output->writeln("<info>Track:</info> {$track->title}");
+                    $output->writeln("<info>Running Time:</info> {$track->position} / {$track->duration}");
                 }
             } else {
-                $output->writeln("Now Playing: {$track->title} from {$track->album} by {$track->artist}");
-                $output->writeln("Running Time: {$track->position} / {$track->duration}");
+                $output->writeln("<info>Now Playing:</info> {$track->title} from {$track->album} by {$track->artist}");
+                $output->writeln("<info>Running Time:</info> {$track->position} / {$track->duration}");
             }
         }
 
