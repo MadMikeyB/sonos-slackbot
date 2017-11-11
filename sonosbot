@@ -10,6 +10,7 @@ use MadMikeyB\SonosBot\Command\SonosPauseCommand;
 use MadMikeyB\SonosBot\Command\SonosPlayCommand;
 use MadMikeyB\SonosBot\Command\SonosPlaylistsCommand;
 use MadMikeyB\SonosBot\Command\SonosRepeatCommand;
+use MadMikeyB\SonosBot\Command\SonosSamDCommand;
 use MadMikeyB\SonosBot\Command\SonosShuffleCommand;
 use Symfony\Component\Console\Application;
 
@@ -21,7 +22,8 @@ $commands = [
     new SonosShuffleCommand,
     new SonosCrossFadeCommand,
     new SonosInfoCommand,
-    new SonosPlaylistsCommand
+    new SonosPlaylistsCommand,
+    new SonosSamDCommand
 ];
 
 $application = new Application('Sonos Slackbot', '0.0.1');
