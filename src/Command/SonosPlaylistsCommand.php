@@ -13,7 +13,7 @@ class SonosPlaylistsCommand extends Command
     protected function configure()
     {
         $this->setName('sonos:playlist');
-        $this->setDescription('Get playlists stored on SONOS.');
+        $this->setDescription('Get stored SONOS playlists, see information about them and play them');
 
         $this->addArgument('playlist-name', InputArgument::OPTIONAL, 'The name of the playlist.');
         $this->addArgument('play', InputArgument::OPTIONAL, 'Play the selected playlist.');

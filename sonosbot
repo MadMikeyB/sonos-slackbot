@@ -14,7 +14,6 @@ use MadMikeyB\SonosBot\Command\SonosShuffleCommand;
 use Symfony\Component\Console\Application;
 
 $commands = [
-    new ExampleCommand,
     new SonosCommand,
     new SonosPlayCommand,
     new SonosPauseCommand,
