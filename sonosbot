@@ -2,7 +2,10 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
 
+use MadMikeyB\SonosBot\Command\ExampleCommand;
 use Symfony\Component\Console\Application;
 
+$command = new ExampleCommand();
 $application = new Application('Sonos Slackbot', '0.0.1');
+$application->add($command);
 $application->run();
