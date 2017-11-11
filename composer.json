@@ -18,7 +18,9 @@
     ],
     "require": {
         "php" : ">=7.0",
-        "symfony/console": "^3.3"
+        "symfony/console": "^3.3",
+        "psr/log": "1.0.0",
+        "duncan3dc/sonos": "^1.9"
     },
     "autoload": {
         "psr-4": { 
