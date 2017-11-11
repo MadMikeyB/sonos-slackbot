@@ -2,6 +2,7 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
 
+use Dotenv\Dotenv;
 use MadMikeyB\SonosBot\Command\ExampleCommand;
 use MadMikeyB\SonosBot\Command\SonosCommand;
 use MadMikeyB\SonosBot\Command\SonosCrossFadeCommand;
@@ -13,6 +14,9 @@ use MadMikeyB\SonosBot\Command\SonosRepeatCommand;
 use MadMikeyB\SonosBot\Command\SonosSamDCommand;
 use MadMikeyB\SonosBot\Command\SonosShuffleCommand;
 use Symfony\Component\Console\Application;
+
+$dotenv = new Dotenv(__DIR__);
+$dotenv->load();
 
 $commands = [
     new SonosCommand,
