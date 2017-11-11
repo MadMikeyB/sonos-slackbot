@@ -25,6 +25,7 @@ class SonosSamDCommand extends Command
         $track = new Spotify("4IEOKcFZGMiKp5NXYjH001");
         $controller->useQueue();
         $controller->getQueue()->addTrack($track, 1);
+        $controller->selectTrack(1);
         $controller->play();
     }
 }

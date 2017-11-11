@@ -13,6 +13,8 @@ use MadMikeyB\SonosBot\Command\SonosPlaylistsCommand;
 use MadMikeyB\SonosBot\Command\SonosRepeatCommand;
 use MadMikeyB\SonosBot\Command\SonosSamDCommand;
 use MadMikeyB\SonosBot\Command\SonosShuffleCommand;
+use MadMikeyB\SonosBot\Command\SonosSpotifyAddCommand;
+use MadMikeyB\SonosBot\Command\SonosSpotifySearchCommand;
 use Symfony\Component\Console\Application;
 
 $dotenv = new Dotenv(__DIR__);
@@ -27,7 +29,9 @@ $commands = [
     new SonosCrossFadeCommand,
     new SonosInfoCommand,
     new SonosPlaylistsCommand,
-    new SonosSamDCommand
+    new SonosSamDCommand,
+    new SonosSpotifySearchCommand,
+    new SonosSpotifyAddCommand
 ];
 
 $application = new Application('Sonos Slackbot', '0.0.1');

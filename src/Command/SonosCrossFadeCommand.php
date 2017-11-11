@@ -20,15 +20,14 @@ class SonosCrossFadeCommand extends Command
     {
         $sonos = new Network;
 
-        $controllers = $sonos->getControllers();
-        foreach ($controllers as $controller) {
-            if (!$controller->getCrossfade()) {
-                $controller->setCrossfade(true);
-                $output->writeln("Crossfade enabled for {$controller->room}");
-            } else {
-                $controller->setCrossfade(false);
-                $output->writeln("Crossfade disabled for {$controller->room}");
-            }
+        $controller = $sonos->getController();
+        
+        if (!$controller->getCrossfade()) {
+            $controller->setCrossfade(true);
+            $output->writeln("Crossfade enabled for {$controller->room}");
+        } else {
+            $controller->setCrossfade(false);
+            $output->writeln("Crossfade disabled for {$controller->room}");
         }
 
     }

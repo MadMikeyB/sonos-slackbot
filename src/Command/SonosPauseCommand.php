@@ -20,11 +20,7 @@ class SonosPauseCommand extends Command
     {
         $sonos = new Network;
 
-        $controllers = $sonos->getControllers();
-        foreach ($controllers as $controller) {
-            $output->writeln("Pausing music on {$controller->room}");
-            $controller->pause();
-        }
-
+        $sonos->getController()->pause();
+        $output->writeln("Pausing music on {$sonos->getController()->room}");
     }
 }

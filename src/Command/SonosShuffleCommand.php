@@ -20,15 +20,13 @@ class SonosShuffleCommand extends Command
     {
         $sonos = new Network;
 
-        $controllers = $sonos->getControllers();
-        foreach ($controllers as $controller) {
-            if (!$controller->getShuffle()) {
-                $controller->setShuffle(true);
-                $output->writeln("Enabling Shuffle on {$controller->room}");
-            } else {
-                $controller->setShuffle(false);
-                $output->writeln("Disabling Shuffle on {$controller->room}");
-            }
+        $controller = $sonos->getController();
+        if (!$controller->getShuffle()) {
+            $controller->setShuffle(true);
+            $output->writeln("Enabling Shuffle on {$controller->room}");
+        } else {
+            $controller->setShuffle(false);
+            $output->writeln("Disabling Shuffle on {$controller->room}");
         }
 
     }

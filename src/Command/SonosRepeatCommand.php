@@ -20,16 +20,14 @@ class SonosRepeatCommand extends Command
     {
         $sonos = new Network;
 
-        $controllers = $sonos->getControllers();
-        foreach ($controllers as $controller) {
-            if (!$controller->getRepeat()) {
-                $controller->setRepeat(true);
-                $output->writeln("Enabling Repeat on {$controller->room}");
-            } else {
-                $controller->setRepeat(false);
-                $output->writeln("Disabling Repeat on {$controller->room}");
-            }
-        }
+        $controller = $sonos->getController();
 
+        if (!$controller->getRepeat()) {
+            $controller->setRepeat(true);
+            $output->writeln("Enabling Repeat on {$controller->room}");
+        } else {
+            $controller->setRepeat(false);
+            $output->writeln("Disabling Repeat on {$controller->room}");
+        }
     }
 }

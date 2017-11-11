@@ -19,12 +19,7 @@ class SonosPlayCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $sonos = new Network;
-
-        $controllers = $sonos->getControllers();
-        foreach ($controllers as $controller) {
-            $output->writeln("Now playing on {$controller->room}");
-            $controller->play();
-        }
-
+        $sonos->getController()->play();
+        $output->writeln("Now playing on {$sonos->getController()->room}");
     }
 }
