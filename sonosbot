@@ -7,14 +7,17 @@ use MadMikeyB\SonosBot\Command\ExampleCommand;
 use MadMikeyB\SonosBot\Command\SonosCommand;
 use MadMikeyB\SonosBot\Command\SonosCrossFadeCommand;
 use MadMikeyB\SonosBot\Command\SonosInfoCommand;
+use MadMikeyB\SonosBot\Command\SonosNextCommand;
 use MadMikeyB\SonosBot\Command\SonosPauseCommand;
 use MadMikeyB\SonosBot\Command\SonosPlayCommand;
 use MadMikeyB\SonosBot\Command\SonosPlaylistsCommand;
+use MadMikeyB\SonosBot\Command\SonosPreviousCommand;
 use MadMikeyB\SonosBot\Command\SonosRepeatCommand;
 use MadMikeyB\SonosBot\Command\SonosSamDCommand;
 use MadMikeyB\SonosBot\Command\SonosShuffleCommand;
 use MadMikeyB\SonosBot\Command\SonosSpotifyAddCommand;
 use MadMikeyB\SonosBot\Command\SonosSpotifySearchCommand;
+use MadMikeyB\SonosBot\Command\SonosStopCommand;
 use Symfony\Component\Console\Application;
 
 $dotenv = new Dotenv(__DIR__);
@@ -31,7 +34,10 @@ $commands = [
     new SonosPlaylistsCommand,
     new SonosSamDCommand,
     new SonosSpotifySearchCommand,
-    new SonosSpotifyAddCommand
+    new SonosSpotifyAddCommand,
+    new SonosStopCommand,
+    new SonosNextCommand,
+    new SonosPreviousCommand
 ];
 
 $application = new Application('Sonos Slackbot', '0.0.1');
