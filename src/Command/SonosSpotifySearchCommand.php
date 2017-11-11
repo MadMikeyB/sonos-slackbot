@@ -25,8 +25,15 @@ class SonosSpotifySearchCommand extends Command
     {
         $api = new SpotifyWebAPI;
         $sonos = new Network;
+        $session = new Session(
+            getenv('SPOTIFY_CLIENT_ID'),
+            getenv('SPOTIFY_CLIENT_SECRET')
+        );
 
-        $api->setAccessToken(getenv('SPOTIFY_ACCESS_TOKEN'));
+        $session->requestCredentialsToken();
+        $accessToken = $session->getAccessToken();
+
+        $api->setAccessToken($accessToken);
         $tracks = json_decode(json_encode($api->search($input->getArgument('track-name'), 'track')), true)['tracks']['items'];
 
         if ($tracks) {

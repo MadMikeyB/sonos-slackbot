@@ -4,6 +4,7 @@ require __DIR__.'/vendor/autoload.php';
 
 use Dotenv\Dotenv;
 use MadMikeyB\SonosBot\Command\ExampleCommand;
+use MadMikeyB\SonosBot\Command\SlackListenCommand;
 use MadMikeyB\SonosBot\Command\SonosCommand;
 use MadMikeyB\SonosBot\Command\SonosCrossFadeCommand;
 use MadMikeyB\SonosBot\Command\SonosInfoCommand;
@@ -37,7 +38,8 @@ $commands = [
     new SonosSpotifyAddCommand,
     new SonosStopCommand,
     new SonosNextCommand,
-    new SonosPreviousCommand
+    new SonosPreviousCommand,
+    new SlackListenCommand
 ];
 
 $application = new Application('Sonos Slackbot', '0.0.1');

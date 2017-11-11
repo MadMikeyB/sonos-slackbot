@@ -16,7 +16,7 @@ class SonosSpotifyAddCommand extends Command
     protected function configure()
     {
         $this->setName('sonos:spotify:add');
-        $this->setDescription('Search Spotify for a track');
+        $this->setDescription('Add a track from Spotify to the queue.');
 
         $this->addArgument('track-name', InputArgument::REQUIRED, 'The name of the track.');
         $this->addArgument('now', InputArgument::OPTIONAL, 'Play the track immediately.');
@@ -26,23 +26,33 @@ class SonosSpotifyAddCommand extends Command
     {
         $api = new SpotifyWebAPI;
         $sonos = new Network;
+        $session = new Session(
+            getenv('SPOTIFY_CLIENT_ID'),
+            getenv('SPOTIFY_CLIENT_SECRET')
+        );
 
-        $api->setAccessToken(getenv('SPOTIFY_ACCESS_TOKEN'));
+        $session->requestCredentialsToken();
+        $accessToken = $session->getAccessToken();
+
+        $api->setAccessToken($accessToken);
         $tracks = $api->search($input->getArgument('track-name'), 'track');
 
         if ($tracks) {
-            $track = $tracks->tracks->items[0];
-            if ($input->getArgument('now')) {
-                $sonos->getController()->useQueue();
-                $sonos->getController()->getQueue()->addTrack(new Spotify($track->id), 2);
-                $sonos->getController()->pause();
-                $sonos->getController()->selectTrack(1)->play();
-            } else {
-                $sonos->getController()->useQueue();
-                $sonos->getController()->getQueue()->addTrack(new Spotify($track->id));
-            }
+            if ($tracks->tracks->items) {
+                $track = $tracks->tracks->items[0];
+                if ($input->getArgument('now')) {
+                    $track = new Spotify($track->id);
+                    $sonos->getController()->useQueue();
+                    $sonos->getController()->getQueue()->addTrack($track, 2);
+                    $sonos->getController()->interrupt($track, 100);
+                } else {
+                    $sonos->getController()->getQueue()->addTrack(new Spotify($track->id));
+                }
 
-            $output->writeln("<info>{$track->name}</info> by <comment>{$track->artists[0]->name}</comment> added to queue!");
+                $output->writeln("<info>{$track->name}</info> by <comment>{$track->artists[0]->name}</comment> added to queue!");
+            } else {
+                $output->writeln("<error>I couldn't find anything! :(</error>");
+            }
         }
     }
 }

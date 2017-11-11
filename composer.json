@@ -22,7 +22,9 @@
         "psr/log": "1.0.0",
         "duncan3dc/sonos": "^1.9",
         "jwilsson/spotify-web-api-php": "^2.0",
-        "vlucas/phpdotenv": "^2.4"
+        "vlucas/phpdotenv": "^2.4",
+        "coderstephen/slack-client": "^0.3.0",
+        "illuminate/support": "^5.5"
     },
     "autoload": {
         "psr-4": { 
@@ -31,5 +33,7 @@
     },
     "require-dev": {
         "symfony/var-dumper": "^3.3"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
