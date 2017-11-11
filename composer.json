@@ -1,0 +1,13 @@
+{
+    "name": "madmikeyb/sonos-slackbot",
+    "require": {
+        "symfony/console": "^3.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Burton",
+            "email": "me@mikeylicio.us"
+        }
+    ]
+}
