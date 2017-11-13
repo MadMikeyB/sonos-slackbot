@@ -29,8 +29,5 @@ class SonosCrossFadeCommand extends Command
             $controller->setCrossfade(false);
             $output->writeln("Crossfade disabled for {$controller->room}");
         }
-
     }
 }
-
-

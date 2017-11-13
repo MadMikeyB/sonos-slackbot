@@ -28,6 +28,5 @@ class SonosShuffleCommand extends Command
             $controller->setShuffle(false);
             $output->writeln("Disabling Shuffle on {$controller->room}");
         }
-
     }
 }

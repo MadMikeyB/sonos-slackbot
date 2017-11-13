@@ -33,7 +33,5 @@ class SonosCommand extends Command
                 $output->writeln("<info>{$speaker->room} is controlled by {$speaker->name} and is currently set to {$speaker->getVolume()} dB </info>");
             }
         }
-
-
     }
 }

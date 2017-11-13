@@ -63,5 +63,3 @@ class SlackListenCommand extends Command
         });
     }
 }
-
-

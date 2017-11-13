@@ -34,6 +34,5 @@ class SonosInfoCommand extends Command
             $output->writeln("<info>Now Playing:</info> {$track->title} from {$track->album} by {$track->artist}");
             $output->writeln("<info>Running Time:</info> {$track->position} / {$track->duration}");
         }
-
     }
 }
