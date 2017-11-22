@@ -37,6 +37,9 @@ class SlackListenCommand extends Command
             if (Str::contains($data['text'], 'add')) {
                 $this->processAddCommand($client, $data);
             }
+            if (Str::contains($data['text'], 'current')) {
+                $this->processCurrentCommand($client, $data);
+            }
         });
 
         $loop->run();
@@ -51,6 +54,24 @@ class SlackListenCommand extends Command
         $arguments = array(
             'command' => 'sonos:spotify:add',
             'track-name' => $trackName,
+        );
+
+        $input = new ArrayInput($arguments);
+        $output = new BufferedOutput();
+        $command->run($input, $output);
+
+        $client->getChannelById($data['channel'])->then(function (\Slack\Channel $channel) use ($client, $output) {
+            $content = $output->fetch();
+            $client->send($content, $channel);
+        });
+    }
+
+    protected function processCurrentCommand($client, $data)
+    {
+        $command = $this->getApplication()->find('sonos:info');
+
+        $arguments = array(
+            'command' => 'sonos:info',
         );
 
         $input = new ArrayInput($arguments);
