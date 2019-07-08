@@ -23,16 +23,16 @@ class SonosInfoCommand extends Command
         $controller = $sonos->getController();
 
         $track = $controller->getStateDetails();
-        if ($track->stream) {
-            $output->writeln("<info>Currently Streaming:</info> {$track->stream}");
-            if ($track->artist) {
-                $output->writeln("<info>Artist:</info> {$track->artist}");
-                $output->writeln("<info>Track:</info> {$track->title}");
-                $output->writeln("<info>Running Time:</info> {$track->position} / {$track->duration}");
+        if ($track->getStream()) {
+            $output->writeln("<info>Currently Streaming:</info> {$track->getStream()}");
+            if ($track->getArtist()) {
+                $output->writeln("<info>Artist:</info> {$track->getArtist()}");
+                $output->writeln("<info>Track:</info> {$track->getTitle()}");
+                $output->writeln("<info>Running Time:</info> {$track->getPosition()} / {$track->getDuration()}");
             }
         } else {
-            $output->writeln("<info>Now Playing:</info> {$track->title} from {$track->album} by {$track->artist}");
-            $output->writeln("<info>Running Time:</info> {$track->position} / {$track->duration}");
+            $output->writeln("<info>Now Playing:</info> {$track->getTitle()} from {$track->getAlbum()} by {$track->getArtist()}");
+            $output->writeln("<info>Running Time:</info> {$track->getPosition()} / {$track->getDuration()}");
         }
     }
 }
