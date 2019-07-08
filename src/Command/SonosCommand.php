@@ -22,15 +22,15 @@ class SonosCommand extends Command
 
         $controllers = $sonos->getControllers();
         foreach ($controllers as $controller) {
-            $output->writeln("{$controller->room} is the SONOS Controller, and it is currently {$controller->getStateName()}");
+            $output->writeln("{$controller->getRoom()} is the SONOS Controller, and it is currently {$controller->getStateName()}");
         }
 
         $speakers = $sonos->getSpeakers();
         foreach ($speakers as $speaker) {
             if ($speaker->getVolume() > 50) {
-                $output->writeln("<error>LOUD</error>: <info>{$speaker->room} is controlled by {$speaker->name} and is currently set to {$speaker->getVolume()} dB </info>");
+                $output->writeln("<error>LOUD</error>: <info>{$speaker->getRoom()} is controlled by {$speaker->getName()} and is currently set to {$speaker->getVolume()} dB </info>");
             } else {
-                $output->writeln("<info>{$speaker->room} is controlled by {$speaker->name} and is currently set to {$speaker->getVolume()} dB </info>");
+                $output->writeln("<info>{$speaker->getRoom()} is controlled by {$speaker->getName()} and is currently set to {$speaker->getVolume()} dB </info>");
             }
         }
     }
