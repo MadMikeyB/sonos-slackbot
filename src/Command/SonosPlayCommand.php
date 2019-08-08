@@ -20,6 +20,6 @@ class SonosPlayCommand extends Command
     {
         $sonos = new Network;
         $sonos->getController()->play();
-        $output->writeln("Now playing on {$sonos->getController()->room}");
+        $output->writeln("Now playing on {$sonos->getController()->getRoom()}");
     }
 }

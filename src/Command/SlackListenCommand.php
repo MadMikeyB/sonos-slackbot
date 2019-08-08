@@ -1,18 +1,18 @@
 <?php
 namespace MadMikeyB\SonosBot\Command;
 
-use Illuminate\Support\Str;
-use React\EventLoop\Factory;
 use Slack\Channel;
 use Slack\RealTimeClient;
+use duncan3dc\Sonos\Network;
+use Illuminate\Support\Str;
+use React\EventLoop\Factory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use duncan3dc\Sonos\Network;
 
 class SlackListenCommand extends Command
 {
@@ -38,7 +38,40 @@ class SlackListenCommand extends Command
                 $this->processAddCommand($client, $data);
             }
             if (Str::contains($data['text'], 'current')) {
-                $this->processCurrentCommand($client, $data);
+                $this->processCommand($client, $data, 'sonos:info');
+            }
+            if (Str::contains($data['text'], 'next')) {
+                $this->processCommand($client, $data, 'sonos:next');
+            }
+            if (Str::contains($data['text'], 'prev')) {
+                $this->processCommand($client, $data, 'sonos:prev');
+            }
+            if (Str::contains($data['text'], 'pause')) {
+                $this->processCommand($client, $data, 'sonos:pause');
+            }
+            if (Str::contains($data['text'], 'stop')) {
+                $this->processCommand($client, $data, 'sonos:stop');
+            }
+            if (Str::contains($data['text'], 'play')) {
+                $this->processCommand($client, $data, 'sonos:play');
+            }
+            if (Str::contains($data['text'], 'play')) {
+                $this->processCommand($client, $data, 'sonos:play');
+            }
+            if (Str::contains($data['text'], 'playlist')) {
+                $this->processCommand($client, $data, 'sonos:playlist');
+            }
+            if (Str::contains($data['text'], 'shuffle')) {
+                $this->processCommand($client, $data, 'sonos:shuffle');
+            }
+            if (Str::contains($data['text'], 'repeat')) {
+                $this->processCommand($client, $data, 'sonos:repeat');
+            }
+            if (Str::contains($data['text'], 'crossroads')) {
+                $this->processCommand($client, $data, 'sonos:crossroads');
+            }
+            if (Str::contains($data['text'], 'list')) {
+                $this->processCommand($client, $data, 'list');
             }
         });
 
@@ -66,12 +99,13 @@ class SlackListenCommand extends Command
         });
     }
 
-    protected function processCurrentCommand($client, $data)
+    protected function processCommand($client, $data, $commandName, $args = [])
     {
-        $command = $this->getApplication()->find('sonos:info');
+        $command = $this->getApplication()->find($commandName);
 
         $arguments = array(
-            'command' => 'sonos:info',
+            'command' => $commandName,
+            $args
         );
 
         $input = new ArrayInput($arguments);

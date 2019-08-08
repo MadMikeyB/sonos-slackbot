@@ -21,6 +21,6 @@ class SonosPauseCommand extends Command
         $sonos = new Network;
 
         $sonos->getController()->pause();
-        $output->writeln("Pausing music on {$sonos->getController()->room}");
+        $output->writeln("Pausing music on {$sonos->getController()->getRoom()}");
     }
 }

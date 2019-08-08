@@ -24,7 +24,7 @@ class SonosNextCommand extends Command
         $sonos->getController()->next();
         $track = $sonos->getController()->getStateDetails();
 
-        $output->writeln("<info>{$previousTrack->title}</info> by <info>{$previousTrack->artist}</info> <error>skipped</error>");
-        $output->writeln("<info>Now Playing:</info> <comment>{$track->title}</comment> by <info>{$track->artist}</info>");
+        $output->writeln("<info>{$previousTrack->getTitle()}</info> by <info>{$previousTrack->getArtist()}</info> <error>skipped</error>");
+        $output->writeln("<info>Now Playing:</info> <comment>{$track->getTitle()}</comment> by <info>{$track->getArtist()}</info>");
     }
 }
